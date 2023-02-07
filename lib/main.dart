@@ -1,5 +1,7 @@
-import 'package:complex_animations/widgets/custom_drawer.dart';
-import 'package:complex_animations/widgets/custom_drawer2.dart';
+import 'package:complex_animations/widgets/drawers/zoom_drawer.dart';
+
+import 'widgets/drawers/custom_drawer.dart';
+import 'widgets/drawers/custom_drawer2.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/homepage.dart';
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool flip = false;
+    bool flip = true;
     AppBar appBar = flip
         ? AppBar()
         : AppBar(
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
           );
     Widget child = HomePage(appBar: appBar);
     if (flip) {
-      child = CustomGuitarDrawer(key: UniqueKey(), child: child);
+      child = CustomFlipDrawer(key: UniqueKey(), child: child);
     } else {
       child = CustomDrawer(child: child);
     }
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: child,
+      home: const ZoomDrawerScreen(),
     );
   }
 }

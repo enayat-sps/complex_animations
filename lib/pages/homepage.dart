@@ -1,4 +1,4 @@
-import 'package:complex_animations/widgets/custom_drawer.dart';
+import 'package:complex_animations/widgets/drawers/custom_drawer.dart';
 import 'package:complex_animations/widgets/menus/staggered_menu.dart';
 
 import '../config/constants.dart';
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       backgroundColor: HomepageColors.homeBackground,
       appBar: appBarWithNoElevation(
-        homeTitle,
+        '',
         HomepageColors.homeBackground,
         true,
         AnimatedBuilder(
@@ -82,6 +82,7 @@ class _HomePageState extends State<HomePage>
       // drawer: const CustomDrawer(
       //   child: MyDrawer(),
       // ),
+
       // Drawer(
       //   backgroundColor: AppColors.homeBackground,
       //   child: ListView(
@@ -101,6 +102,9 @@ class _HomePageState extends State<HomePage>
                 MaterialPageRoute(
                   builder: (context) => const FlightSurveyPage(),
                 ),
+              ),
+              style: ElevatedButton.styleFrom(
+                elevation: 5,
               ),
               child: const Text('Next Page'),
             ),

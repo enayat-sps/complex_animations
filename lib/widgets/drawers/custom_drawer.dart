@@ -1,4 +1,5 @@
 import 'package:complex_animations/config/app_colors.dart';
+import 'drawer_column.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -16,8 +17,8 @@ class CustomDrawer extends StatefulWidget {
 class CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
   static const Duration toggleDuration = Duration(milliseconds: 250);
-  static const double maxSlide = 225;
-  static const double minDragStartEdge = 60;
+  static const double maxSlide = 50;
+  static const double minDragStartEdge = 30;
   static const double maxDragStartEdge = maxSlide - 16;
   late AnimationController _animationController;
   bool _canBeDragged = false;
@@ -63,7 +64,7 @@ class CustomDrawerState extends State<CustomDrawer>
           builder: (context, child) {
             double animValue = _animationController.value;
             final slideAmount = maxSlide * animValue;
-            final contentScale = 1.0 - (0.3 * animValue);
+            final contentScale = 1.0 - (0.1 * animValue);
             return Stack(
               children: <Widget>[
                 const MyDrawer(),
@@ -128,33 +129,7 @@ class MyDrawer extends StatelessWidget {
     return Material(
       color: HomepageColors.homeBackground,
       child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: const [
-            SizedBox(height: 100, child: Center(child: Text('Drawer'))),
-            ListTile(
-              leading: Icon(Icons.new_releases),
-              title: Text('News'),
-            ),
-            ListTile(
-              leading: Icon(Icons.star),
-              title: Text('Favourites'),
-            ),
-            ListTile(
-              leading: Icon(Icons.map),
-              title: Text('Map'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Profile'),
-            ),
-          ],
-        ),
+        child: drawerColumn(),
       ),
     );
   }

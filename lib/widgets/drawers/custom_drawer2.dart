@@ -1,21 +1,24 @@
 import 'dart:math' as math;
 
+import 'package:complex_animations/config/app_colors.dart';
+import 'package:complex_animations/config/constants.dart';
+import 'package:complex_animations/widgets/drawers/drawer_column.dart';
 import 'package:flutter/material.dart';
 
-class CustomGuitarDrawer extends StatefulWidget {
+class CustomFlipDrawer extends StatefulWidget {
   final Widget child;
 
-  const CustomGuitarDrawer({required Key key, required this.child})
+  const CustomFlipDrawer({required Key key, required this.child})
       : super(key: key);
 
-  static CustomGuitarDrawerState? of(BuildContext context) =>
-      context.findAncestorStateOfType<CustomGuitarDrawerState>();
+  static CustomFlipDrawerState? of(BuildContext context) =>
+      context.findAncestorStateOfType<CustomFlipDrawerState>();
 
   @override
-  CustomGuitarDrawerState createState() => CustomGuitarDrawerState();
+  CustomFlipDrawerState createState() => CustomFlipDrawerState();
 }
 
-class CustomGuitarDrawerState extends State<CustomGuitarDrawer>
+class CustomFlipDrawerState extends State<CustomFlipDrawer>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   bool _canBeDragged = false;
@@ -81,7 +84,6 @@ class CustomGuitarDrawerState extends State<CustomGuitarDrawer>
                   child: IconButton(
                     icon: const Icon(Icons.menu),
                     onPressed: toggle,
-                    color: Colors.white,
                   ),
                 ),
                 Positioned(
@@ -90,8 +92,12 @@ class CustomGuitarDrawerState extends State<CustomGuitarDrawer>
                       MediaQuery.of(context).size.width,
                   width: MediaQuery.of(context).size.width,
                   child: const Text(
-                    'Home',
+                    homeTitle,
                     textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
@@ -143,41 +149,9 @@ class MyDrawer extends StatelessWidget {
       width: 300,
       height: double.infinity,
       child: Material(
-        color: Colors.blue,
+        color: HomepageColors.homeBackground,
         child: SafeArea(
-          child: Theme(
-            data: ThemeData(brightness: Brightness.dark),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Image.asset(
-                  'assets/flutter_europe_white.png',
-                  width: 200,
-                ),
-                const ListTile(
-                  leading: Icon(Icons.new_releases),
-                  title: Text('News'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.star),
-                  title: Text('Favourites'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.map),
-                  title: Text('Map'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Settings'),
-                ),
-                const ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Profile'),
-                ),
-              ],
-            ),
-          ),
+          child: drawerColumn(),
         ),
       ),
     );

@@ -4,6 +4,10 @@ class HomepageColors {
   static const homeBackground = Color.fromRGBO(237, 225, 209, 1.0);
 }
 
+class DrawerColors {
+  static const drawerBackground = Colors.blueGrey;
+}
+
 class SurveyPageColors {
   static const backgroundDecoration = BoxDecoration(
     gradient: LinearGradient(
